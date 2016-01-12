@@ -5,20 +5,10 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Page;
-use Redirct, Input, Auth;
+use Redirect, Input, Auth;
 
 class PagesController extends Controller
 {
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -40,7 +30,7 @@ class PagesController extends Controller
     {
         //
         $this->validate($request, [
-            'title' => 'required|unqiue:pages|max:255',
+            'title' => 'required|unique:pages|max:255',
             'body' => 'required',
         ]);
 
@@ -50,9 +40,9 @@ class PagesController extends Controller
         $page->user_id = 1;
 
         if ($page->save()) {
-            return Redirct::to('admin');
+            return Redirect::to('admin');
         } else {
-            return Redirct::back()->withInput()->withError('保存失败!');
+            return Redirect::back()->withInput()->withError('保存失败!');
         }
     }
 
@@ -85,9 +75,24 @@ class PagesController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request,$id)
     {
         //
+        $this->validate($request, [
+            'title' => 'required|unique:pages,title,'.$id.'|max:255',
+            'body' => 'required',
+        ]);
+
+        $page = Page::find($id);
+        $page->title = Input::get('title');
+        $page->body = Input::get('body');
+        $page->user_id = 1;//Auth::user()->id;
+
+        if ($page->save()) {
+            return Redirect::to('admin');
+        } else {
+            return Redirect::back()->withInput()->withErrors('保存失败！');
+        }
     }
 
     /**
