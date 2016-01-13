@@ -20,7 +20,7 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middlware'=>'auth'],function(){
     Route::get('/','AdminHomeController@index');
     Route::resource('pages','PagesController');
 });
