@@ -11,14 +11,13 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+//Route::get('/', 'WelcomeController@index');
 
-Route::get('home', 'HomeController@index');
+Route::get('/', 'HomeController@index');
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+Route::get('auth/login','Auth/AuthController@getLogin');
+Route::post('auth/login','Auth/AuthController@postLogin');
+Route::get('auth/logout','Auth/AuthController@getlogout');
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middlware'=>'auth'],function(){
     Route::get('/','AdminHomeController@index');
