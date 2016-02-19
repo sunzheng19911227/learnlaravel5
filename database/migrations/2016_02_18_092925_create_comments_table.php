@@ -20,6 +20,7 @@ class CreateCommentsTable extends Migration {
 			$table->string('website')->nullable();
 			$table->string('content')->nullable();
 			$table->integer('page_id');
+            $table->integer('article_id');
 			$table->timestamps();
 		});
 	}

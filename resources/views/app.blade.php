@@ -7,9 +7,6 @@
 	<title>Laravel</title>
 
 	<link href="/css/app.css" rel="stylesheet">
-
-	<!-- Fonts -->
-  <link href='http://fonts.useso.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -31,7 +28,9 @@
 				<ul class="nav navbar-nav">
 					<li><a href="{{ URL('/admin/comments')}}">管理评论</a></li>
 				</ul>
-
+                <ul class="nav navbar-nav">
+					<li><a href="{{ URL('/admin/articles')}}">管理文章</a></li>
+				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					@if (Auth::guest())
 						<li><a href="/auth/login">Login</a></li>

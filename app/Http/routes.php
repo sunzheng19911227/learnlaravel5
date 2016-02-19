@@ -27,4 +27,5 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middlware'=>'auth'],functi
     Route::get('/','AdminHomeController@index');
     Route::resource('pages','PagesController');
     Route::resource('comments', 'CommentsController');
+    Route::resource('articles', 'ArticlesController');
 });
